@@ -1,0 +1,51 @@
+<div>
+  <h1>Products List</h1>
+
+  <div class="row">
+    <a class="btn btn-success text-white" href="/">Back To Home</a>&nbsp;&nbsp;
+    <a class="btn btn-primary" [routerLink]="['/projectCreateUp']" [routerLinkActive]="['link-active']"> <i class="fa fa-plus"></i> Create Project</a>&nbsp;&nbsp;
+    <!--<a class="btn btn-primary" [routerLink]="['/addDeveloperToProject']" [routerLinkActive]="['link-active']"> <i class="fa fa-address-book-o" aria-hidden="true"></i> Developers To Project</a>-->
+  </div>
+</div>
+
+<div class="p-4" style="border-radius:20px;">
+  <div style="background-color:#cde8e2" class="p-3 rounded">
+    <div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>{{erro}}</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" style="width:100%;color:black;">
+                  <thead>
+                    <tr>
+                      <td>Name</td>
+                      <td>Date</td>
+                      <td>Actions</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let project of projects">
+                      <td>{{project.name}}</td>
+                      <td>{{project.created | date: 'dd/MM/yyyy'}}</td>
+                      <td>
+                        <a [routerLink]="['/projectCreateUp', project.id]" [routerLinkActive]="['link-active']" class='btn btn-success text-white' style='cursor:pointer;'> <i class='fa fa-pencil-square-o'></i></a>
+                        &nbsp;
+                        <a (click)="delete(project)" class='btn btn-danger text-white' style='cursor:pointer;'> <i class='fa fa-trash'></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

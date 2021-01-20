@@ -1,0 +1,56 @@
+
+<div>
+  <h1>Developers List</h1>
+
+  <div class="row">
+    <a class="btn btn-success text-white" href="/">Back To Home</a>&nbsp;&nbsp;
+    <a class="btn btn-primary" [routerLink]="['/developerCreateUp']" [routerLinkActive]="['link-active']"> <i class="fa fa-plus"></i> Create Developers</a>&nbsp;&nbsp;
+    <!--<a class="btn btn-primary" [routerLink]="['/addHourToDeveloper']" [routerLinkActive]="['link-active']"> <i class="fa fa-address-book-o" aria-hidden="true"></i> Add Hour To Developer</a>-->
+  </div>
+</div>
+
+<div class="p-4" style="border-radius:20px;">
+  <div style="background-color:#cde8e2" class="p-3 rounded">
+    <div data-ng-controller="productControllerRead">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>{{erro}}</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" style="width:100%;color:black;">
+                  <thead>
+                    <tr>
+                      <td>Name</td>
+                      <td>CPF</td>
+                      <td>Date Created</td>
+                      <td>Actions</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--<tr *ngFor="let developer of developers | paginate: { itemsPerPage: 2, currentPage: p }">-->
+                    <tr *ngFor="let developer of developers">
+                      <td>{{developer.name}}</td>
+                      <td>{{developer.cpf}}</td>
+                      <td>{{developer.created | date: 'dd/MM/yyyy'}}</td>
+                      <td>
+                        <a [routerLink]="['/developerCreateUp', developer.id]" [routerLinkActive]="['link-active']" class='btn btn-success text-white' style='cursor:pointer;'> <i class='fa fa-pencil-square-o'></i></a>
+                        &nbsp;
+                        <a (click)="delete(developer)" class='btn btn-danger text-white' style='cursor:pointer;'> <i class='fa fa-trash'></i></a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!--<pagination-controls (pageChange)="p = $event"></pagination-controls>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

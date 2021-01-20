@@ -1,0 +1,39 @@
+<div>
+  <h1>Week Ranking of Developers Hour Demand</h1>
+
+  <div class="row">
+    <a class="btn btn-success text-white" href="/">Back To Home</a>&nbsp;&nbsp;
+  </div>
+</div>
+
+<div class="p-4" style="border-radius:20px;">
+  <div style="background-color:#cde8e2" class="p-3 rounded">
+    <div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <strong>{{erro}}</strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover" style="width:100%;color:black;">
+                  <tr>
+                    <td>Name</td>
+                    <td>Hours worked this week</td>
+                  </tr>
+                  <tr *ngFor="let developer of developers">
+                    <td>{{developer.nameDev}}</td>
+                    <td>{{developer.allTime}}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

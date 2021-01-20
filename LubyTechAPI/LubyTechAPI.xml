@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LubyTechAPI</name>
+    </assembly>
+    <members>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.GetDevelopers(System.Int32)">
+            <summary>
+            Get List of Developers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.GetDeveloper(System.Int32)">
+            <summary>
+            Get Individual Developer
+            </summary>
+            <param name="id">The id of the Developer</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.CreateDeveloper(LubyTechAPI.Models.DTOs.DeveloperCreateDto)">
+            <summary>
+            CreateDeveloper
+            </summary>
+            <param name="developers">Create of Developers</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.UpdateDeveloper(LubyTechAPI.Models.DTOs.DeveloperUpdateDto)">
+            <summary>
+            UpdateDeveloper
+            </summary>
+            <param name=" developer">Object of Developer</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.DeleteDeveloper(System.Int32)">
+            <summary>
+            DeleteDeveloper
+            </summary>
+            <param name="id">Id of Developer</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.SearchCpf(System.Int64)">
+            <summary>
+            The Developer CPF already  Exist?
+            </summary>
+            <param name="cpf">The Developer CPF</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProjects(System.Int32)">
+            <summary>
+            Get List of Projects
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProject(System.Int32)">
+            <summary>
+            Get Individual Project
+            </summary>
+            <param name="id">The id of the Project</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.CreateProject(LubyTechAPI.Models.DTOs.ProjectCreateDto)">
+            <summary>
+            Create Project
+            </summary>
+            <param name="project">Object of the Project</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.UpdateProject(LubyTechAPI.Models.DTOs.ProjectUpdateDto)">
+            <summary>
+            Update Project
+            </summary>
+            <param name="projectDto">Object of the Project</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.DeleteProject(System.Int32)">
+            <summary>
+            Delete Project
+            </summary>
+            <param name="id">Id of the Project</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.GetRankingOfDevelopers">
+            <summary>
+            Get List of Developers By week Progress
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.GetToken">
+            <summary>
+            Get The Token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.AddHourToProject(LubyTechAPI.Models.DTOs.HourDto)">
+            <summary>
+            Add Hour To Project
+            </summary>
+            <param name="hour">Hour Object with Developer and Project Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.Version2.ProjectsV2Controller.AddDeveloperToProject(System.Int32,System.Int32)">
+            <summary>
+            Add Developer To Project
+            </summary>
+            <param name="developerId">Id of the Developer</param>
+            <param name="projectId">Id of the Project</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

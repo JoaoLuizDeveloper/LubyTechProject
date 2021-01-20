@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LubyTechAPI</name>
+    </assembly>
+    <members>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.GetDevelopers">
+            <summary>
+            Get List of Developers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.GetDeveloper(System.Int32)">
+            <summary>
+            Get Individual Developers
+            </summary>
+            <param name="id">The id of the Developers</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.CriarDeveloper(LubyTechAPI.Models.Developer)">
+            <summary>
+            CriarDeveloper
+            </summary>
+            <param name="marcas">Criação de Developers</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.GetDevelopers">
+            <summary>
+            Get List of Developers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProjects">
+            <summary>
+            Get List of Projects
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProject(System.Int32)">
+            <summary>
+            Get Individual Project
+            </summary>
+            <param name="id">The id of the Project</param>
+            <returns></returns>
+        </member>
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProjectInDevelopers(System.Int32)">
+            <summary>
+            Get Individual Project
+            </summary>
+            <param name="patrimonioid">The id of the ProjectId</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -7,6 +7,7 @@ using LubyTechAPI.Repository.IRepository;
 using LubyTechAPI.Models.DTOs;
 using X.PagedList;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace LubyTechAPI.Controllers
 {
@@ -17,12 +18,14 @@ namespace LubyTechAPI.Controllers
     public class DevelopersController : ControllerBase
     {
         #region Construtor/Injection
-        private readonly IDeveloperRepository _npdevelopers;
+        private readonly IUnitOfWork _unitofwork;
+        private readonly IDeveloperRepository _dev;
         private readonly IMapper _mapper;
 
-        public DevelopersController(IDeveloperRepository npdevelopers, IMapper mapper)
+        public DevelopersController(IUnitOfWork unit, IDeveloperRepository dev, IMapper mapper)
         {
-            _npdevelopers = npdevelopers;
+            _unitofwork = unit;
+            _dev = dev;
             _mapper = mapper;
         }
         #endregion
@@ -34,10 +37,9 @@ namespace LubyTechAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(200, Type= typeof(List<Developer>))]
-        public async Task<IPagedList<Developer>> GetDevelopers(int page = 1)
+        public async Task<IEnumerable<Developer>> GetDevelopers()
         {
-            var devs = await _npdevelopers.GetDevelopers();
-            return devs.ToPagedList(page, 5);
+            return await _unitofwork.Developer.GetAll();
         }
         #endregion
 
@@ -49,11 +51,12 @@ namespace LubyTechAPI.Controllers
         /// <returns></returns>
         [HttpGet("GetDeveloper/{id:int}", Name = "GetDeveloper")]
         [ProducesResponseType(200, Type = typeof(Developer))]
-        [ProducesResponseType(404)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
         public async Task<Developer> GetDeveloper(int id)
         {
-            var obj = await _npdevelopers.GetDeveloper(id);
+            var obj = await _unitofwork.Developer.Get(id);
             if (obj == null)
             {
                 return null;
@@ -74,18 +77,18 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreateDeveloper([FromBody] DeveloperCreateDto developers)
+        public async Task<IActionResult> CreateDeveloper([FromBody] DeveloperCreateDto developers)
         {
             if (developers == null)
             {
                 return BadRequest(ModelState);
             }
 
-            if(_npdevelopers.DeveloperExists(developers.Name))
-            {
-                ModelState.AddModelError("", "Developers already Exist");
-                return StatusCode(404, ModelState);
-            }
+            //if( await _unitofwork.Developer.ExistbyName(developers.Name))
+            //{
+            //    ModelState.AddModelError("", "Developers already Exist");
+            //    return StatusCode(404, ModelState);
+            //}
 
             if(!ModelState.IsValid)
             {
@@ -94,13 +97,13 @@ namespace LubyTechAPI.Controllers
 
             var developerObj = _mapper.Map<Developer>(developers);
 
-            if (!_npdevelopers.CreateDeveloper(developerObj))
+            if (!(await _unitofwork.Developer.Add(developerObj)))
             {
                 ModelState.AddModelError("",$"Something went wrong when you trying to save {developerObj.Name}");
                 return StatusCode(500, ModelState);
             }
 
-            return CreatedAtRoute("GetDeveloper", new { version=HttpContext.GetRequestedApiVersion().ToString(), id= developerObj.Id }, developerObj);
+            return CreatedAtRoute("GetDeveloper", new { version=HttpContext.GetRequestedApiVersion().ToString(), id= developerObj.Id }, developers);
         }
         #endregion
 
@@ -114,7 +117,7 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateDeveloper([FromBody] DeveloperUpdateDto developer)
+        public async Task<IActionResult> UpdateDeveloper([FromBody] DeveloperUpdateDto developer)
         {
             if (developer == null)
             {
@@ -123,7 +126,7 @@ namespace LubyTechAPI.Controllers
 
             var developerObj = _mapper.Map<Developer>(developer);
 
-            if (!_npdevelopers.UpdateDeveloper(developerObj))
+            if (!(await _unitofwork.Developer.Update(developerObj)))
             {
                 ModelState.AddModelError("", $"Something went wrong when you trying to update {developerObj.Name}");
                 return StatusCode(500, ModelState);
@@ -146,14 +149,14 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteDeveloper(int id)
         {
-            if (!_npdevelopers.DeveloperExists(id))
+            if ( !(await _unitofwork.Developer.Exists(id)))
             {
                 return NotFound();
             }
 
-            var developerObj = await _npdevelopers.GetDeveloper(id);
+            var developerObj = await _unitofwork.Developer.Get(id);
 
-            if (!_npdevelopers.DeleteDeveloper(developerObj))
+            if (!(await _unitofwork.Developer.Remove(id)))
             {
                 ModelState.AddModelError("", $"Something went wrong when you trying to delete {developerObj.Name}");
                 return StatusCode(500, ModelState);
@@ -176,9 +179,12 @@ namespace LubyTechAPI.Controllers
         [HttpGet("SearchCpf/{cpf:long}", Name = "SearchCpf")]
         public async Task<ICollection<Developer>> SearchCpf(long cpf)
         {
+            //string t = "137.533.667-30";
+            //var haha = Regex.Replace(t, "[^0-9]+", "");
+
             if (cpf > 0)
             {
-                var cli = await _npdevelopers.DeveloperCPFExists(cpf);
+                var cli = await _unitofwork.Developer.DeveloperCPFExists(cpf);
 
                 if (cli != null && cli.Count > 0)
                 {

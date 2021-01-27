@@ -16,12 +16,14 @@ namespace LubyTechAPI.Controllers.Version2
     {
         #region Construtor/Injection
         private readonly IProjectRepository _project;
+        private readonly IUnitOfWork _unitofwork;
         private readonly IMapper _mapper;
 
-        public ProjectsV2Controller(IProjectRepository project, IMapper mapper)
+        public ProjectsV2Controller(IUnitOfWork unit, IProjectRepository project, IMapper mapper)
         {
             _project = project;
             _mapper = mapper;
+            _unitofwork = unit;
         }
         #endregion
 
@@ -37,20 +39,20 @@ namespace LubyTechAPI.Controllers.Version2
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult AddDeveloperToProject(int developerId, int projectId)
+        public async Task<IActionResult> AddDeveloperToProject(int developerId, int projectId)
         {
-            if (!_project.ProjectExists(projectId))
+            if (! (await _unitofwork.Project.Exists(projectId)))
             {
                 return NotFound();
             }
 
-            if (!_project.DeveloperExists(developerId))
+            if (! (await _unitofwork.Developer.Exists(developerId)))
             {
                 return NotFound();
             }
 
 
-            if (!_project.AddDeveloperToProject(developerId, projectId))
+            if (! (await _project.AddDeveloperToProject(developerId, projectId)))
             {
                 ModelState.AddModelError("", $"Something went wrong when you trying to add this developer to project");
                 return StatusCode(500, ModelState);

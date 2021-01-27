@@ -7,21 +7,12 @@ using System.Threading.Tasks;
 
 namespace LubyTechAPI.Repository.IRepository
 {
-    public interface IDeveloperRepository
+    public interface IDeveloperRepository : IRepository<Developer>
     {
-        Task<ICollection<Developer>> GetDevelopers();
-        Task<Developer> GetDeveloper(int id);
-        Task<Project> GetProject(int id);
-        bool DeveloperExists(string name);
-        string GetToken();
-        ICollection<HourByDeveloper> GetRankinfOfDevelopers();
-
+        Task<ICollection<HourByDeveloper>> GetRankinfOfDevelopers();
         Task<ICollection<Developer>> DeveloperCPFExists(long cpf);
-        bool DeveloperExists(int id);
-        bool CreateDeveloper(Developer Developer);
-        bool AddHourToProject(Hour Hour);
-        bool UpdateDeveloper(Developer Developer);
-        bool DeleteDeveloper(Developer Developer);
-        bool Save();
+        Task<bool> AddHourToProject(Hour Hour);
+
+        string GetToken();
     }
 }

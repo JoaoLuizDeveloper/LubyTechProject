@@ -19,13 +19,15 @@ namespace LubyTechAPI.Controllers
     public class DevelopersV2Controller : ControllerBase
     {
         #region Construtor/Injection
-        private readonly IDeveloperRepository _npdevelopers;
+        private readonly IUnitOfWork _unitofwork;
+        private readonly IDeveloperRepository _dev;
         private readonly IMapper _mapper;
 
-        public DevelopersV2Controller(IDeveloperRepository npdevelopers, IMapper mapper)
+        public DevelopersV2Controller(IUnitOfWork unit, IDeveloperRepository dev, IMapper mapper)
         {
-            _npdevelopers = npdevelopers;
+            _dev = dev;
             _mapper = mapper;
+            _unitofwork = unit;
         }
         #endregion
 
@@ -36,9 +38,9 @@ namespace LubyTechAPI.Controllers
         /// <returns></returns>
         [HttpGet(Name = "GetRankingOfDevelopers")]
         [ProducesResponseType(200, Type= typeof(List<HourByDeveloper>))]
-        public ICollection<HourByDeveloper> GetRankingOfDevelopers()
+        public async Task<ICollection<HourByDeveloper>> GetRankingOfDevelopers()
         {
-            return _npdevelopers.GetRankinfOfDevelopers();
+            return await _dev.GetRankinfOfDevelopers();
         }
         #endregion
 
@@ -54,7 +56,7 @@ namespace LubyTechAPI.Controllers
         [HttpGet("GetToken")]
         public IActionResult GetToken()
         {
-            return Ok(_npdevelopers.GetToken());
+            return Ok(_dev.GetToken());
         }
         #endregion
 
@@ -72,13 +74,13 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddHourToProject([FromBody] HourDto hour)
         {
-            var objDev = await _npdevelopers.GetDeveloper(hour.DeveloperId);
+            var objDev = await _unitofwork.Developer.Get(hour.DeveloperId);
             if (objDev == null)
             {
                 return NotFound();
             }
             
-            var objProject = await _npdevelopers.GetProject(hour.ProjectId);
+            var objProject = await _unitofwork.Project.Get(hour.ProjectId);
             if (objProject == null)
             {
                 return NotFound();
@@ -95,7 +97,7 @@ namespace LubyTechAPI.Controllers
             //Getting the Time in Hours
             HourObj.Time = (HourObj.dateEnd.Subtract(HourObj.dateBegin)).TotalHours;
 
-            if (!_npdevelopers.AddHourToProject(HourObj))
+            if (!(await _dev.AddHourToProject(HourObj)))
             {
                 ModelState.AddModelError("", $"Something went wrong when you trying to Add the Hour {objDev.Name}");
                 return StatusCode(500, ModelState);

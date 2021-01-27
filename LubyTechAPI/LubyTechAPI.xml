@@ -45,7 +45,7 @@
             <param name="cpf">The Developer CPF</param>
             <returns></returns>
         </member>
-        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProjects(System.Int32)">
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.GetProjects">
             <summary>
             Get List of Projects
             </summary>

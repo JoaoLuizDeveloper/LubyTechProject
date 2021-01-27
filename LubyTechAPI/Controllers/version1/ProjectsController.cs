@@ -17,12 +17,14 @@ namespace LubyTechAPI.Controllers
     {
         #region Construtor/Injection
         private readonly IProjectRepository _project;
+        private readonly IUnitOfWork _unitofwork;
         private readonly IMapper _mapper;
 
-        public ProjectsController(IProjectRepository project, IMapper mapper)
+        public ProjectsController(IProjectRepository project, IMapper mapper, IUnitOfWork unit)
         {
             _project = project;
             _mapper = mapper;
+            _unitofwork = unit;
         }
         #endregion
 
@@ -33,10 +35,9 @@ namespace LubyTechAPI.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(200, Type= typeof(List<Project>))]
-        public async Task<IActionResult> GetProjects(int page  = 1)
+        public async Task<IEnumerable<Project>> GetProjects()
         {
-            var pro = await _project.GetProjects();
-            return Ok(pro.ToPagedList(page, 5)); 
+            return await _unitofwork.Project.GetAll(); 
         }
         #endregion
 
@@ -49,17 +50,18 @@ namespace LubyTechAPI.Controllers
         [HttpGet("{id:int}", Name = "GetProject")]
         [ProducesResponseType(200, Type = typeof(Project))]
         [ProducesResponseType(404)]
+        [ProducesResponseType(500)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> GetProject(int id)
+        public async Task<Project> GetProject(int id)
         {
-            var obj = await _project.GetProject(id);
+            var obj = await _unitofwork.Project.Get(id);
             if (obj == null)
             {
-                return NotFound();
+                return null;
             }
 
             var objDTO = _mapper.Map<Project>(obj);
-            return Ok(objDTO);
+            return objDTO;
         }
         #endregion
 
@@ -74,18 +76,18 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreateProject([FromBody] ProjectCreateDto project)
+        public async Task<IActionResult> CreateProject([FromBody] ProjectCreateDto project)
         {
             if (project == null)
             {
                 return BadRequest(ModelState);
             }
 
-            if (_project.ProjectExists(project.Name))
-            {
-                ModelState.AddModelError("", "Project already Exist");
-                return StatusCode(404, ModelState);
-            }
+            //if (await _unitofwork.Project.ExistbyName(project.Name))
+            //{
+            //    ModelState.AddModelError("", "Project already Exist");
+            //    return StatusCode(404, ModelState);
+            //}
 
             if(!ModelState.IsValid)
             {
@@ -94,9 +96,9 @@ namespace LubyTechAPI.Controllers
 
             var projectsObj = _mapper.Map<Project>(project);
 
-            if (!_project.CreateProject(projectsObj))
+            if (! await _unitofwork.Project.Add((projectsObj)))
             {
-                ModelState.AddModelError("",$"Something went wrong when you trying to save {project.Name}");
+                ModelState.AddModelError("",$"Something went wrong when you trying to save {projectsObj.Name}");
                 return StatusCode(500, ModelState);
             }
 
@@ -114,7 +116,7 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdateProject([FromBody] ProjectUpdateDto projectDto)
+        public async Task<IActionResult> UpdateProject([FromBody] ProjectUpdateDto projectDto)
         {
             if (projectDto == null)
             {
@@ -123,7 +125,7 @@ namespace LubyTechAPI.Controllers
 
             var projectsObj = _mapper.Map<Project>(projectDto);
 
-            if (!_project.UpdateProject(projectsObj))
+            if (! await _unitofwork.Project.Update(projectsObj))
             {
                 ModelState.AddModelError("", $"Something went wrong when you trying to update {projectDto.Name}");
                 return StatusCode(500, ModelState);
@@ -146,14 +148,14 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteProject(int id)
         {
-            if (!_project.ProjectExists(id))
+            if (! (await _unitofwork.Project.Exists(id)))
             {
                 return NotFound();
             }
 
-            var projectsDto = await _project.GetProject(id);
+            var projectsDto = await _unitofwork.Project.Get(id);
 
-            if (!_project.DeleteProject(projectsDto))
+            if (! (await _unitofwork.Project.Remove(id)))
             {
                 ModelState.AddModelError("", $"Something went wrong when you trying to delete {projectsDto.Name}");
                 return StatusCode(500, ModelState);

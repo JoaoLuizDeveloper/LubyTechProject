@@ -19,7 +19,7 @@ namespace LubyTechAPI.Controllers
     {
         #region Construtor/Injection
         private readonly IUnitOfWork _unitofwork;
-        private readonly IDeveloperRepository _dev;
+        public readonly IDeveloperRepository _dev;
         private readonly IMapper _mapper;
 
         public DevelopersController(IUnitOfWork unit, IDeveloperRepository dev, IMapper mapper)
@@ -177,22 +177,17 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
         [HttpGet("SearchCpf/{cpf:long}", Name = "SearchCpf")]
-        public async Task<ICollection<Developer>> SearchCpf(long cpf)
+        public async Task<bool> SearchCpf(long cpf)
         {
-            //string t = "137.533.667-30";
-            //var haha = Regex.Replace(t, "[^0-9]+", "");
-
             if (cpf > 0)
             {
-                var cli = await _unitofwork.Developer.DeveloperCPFExists(cpf);
-
-                if (cli != null && cli.Count > 0)
+                if (!await _unitofwork.Developer.CPFExists(cpf))
                 {
-                    return cli;
+                    return false;
                 }
             }
 
-            return null;
+            return true;
         }
         #endregion
     }

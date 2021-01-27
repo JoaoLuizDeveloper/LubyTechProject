@@ -122,7 +122,7 @@ namespace LubyTechAPI.Repository
         #region Save
         public async Task<bool> Save()
         {
-           return await _context.SaveChangesAsync() >= 0 ? true : false;
+           return await _context.SaveChangesAsync() >= 0;
         }
         #endregion
     }

@@ -43,7 +43,7 @@ namespace LubyTechAPI.Repository
                 if(dev.Hours != null && dev.Hours.Count > 0)
                 {
                     double GetWholeTime = 0;
-                    var hoursDev = dev.Hours.Where(x => x.created > DateTime.Now.AddDays(-7)).Select(x => x.Time);                   
+                    var hoursDev = dev.Hours.Where(x => x.Created > DateTime.Now.AddDays(-7)).Select(x => x.Time);                   
 
                     foreach(var h in hoursDev)
                     {
@@ -58,9 +58,18 @@ namespace LubyTechAPI.Repository
             return retorno;
         }
 
-        public async Task<ICollection<Developer>> DeveloperCPFExists(long cpf)
+        public async Task<bool> CPFExists(long cpf)
         {
-           return await  _db.Developers.Where(x => x.CPF.Trim() == cpf.ToString().Trim()).ToListAsync();
+            var exist = await  _db.Developers.FirstOrDefaultAsync(x => x.CPF == cpf);
+
+            if(exist == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }             
         }
 
         public string GetToken()

@@ -95,7 +95,7 @@ namespace LubyTechAPI.Controllers
             var HourObj = _mapper.Map<Hour>(hour);
 
             //Getting the Time in Hours
-            HourObj.Time = (HourObj.dateEnd.Subtract(HourObj.dateBegin)).TotalHours;
+            HourObj.Time = (HourObj.DateEnd.Subtract(HourObj.DateBegin)).TotalHours;
 
             if (!(await _dev.AddHourToProject(HourObj)))
             {

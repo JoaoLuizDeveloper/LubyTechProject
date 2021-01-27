@@ -4,14 +4,16 @@ using LubyTechAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LubyTechAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210127133214_longDeveloperCPFToDb")]
+    partial class longDeveloperCPFToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,15 +70,6 @@ namespace LubyTechAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateBegin")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateEnd")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("DeveloperId")
                         .HasColumnType("int");
 
@@ -85,6 +78,15 @@ namespace LubyTechAPI.Migrations
 
                     b.Property<double>("Time")
                         .HasColumnType("float");
+
+                    b.Property<DateTime>("created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("dateBegin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("dateEnd")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

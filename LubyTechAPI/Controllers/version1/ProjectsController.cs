@@ -16,7 +16,7 @@ namespace LubyTechAPI.Controllers
     public class ProjectsController : ControllerBase
     {
         #region Construtor/Injection
-        private readonly IProjectRepository _project;
+        public readonly IProjectRepository _project;
         private readonly IUnitOfWork _unitofwork;
         private readonly IMapper _mapper;
 

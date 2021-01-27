@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace LubyTechAPI.Models.DTOs
 {
-    public class DeveloperCreateDto
+    public class DeveloperUpdateDto
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
-        public string CPF { get; set; }
+        public long CPF { get; set; }
 
         public DateTime Created { get; set; }
     }

@@ -17,7 +17,7 @@ namespace LubyTechAPI.Controllers.Version2
         #region Construtor/Injection
         private readonly IProjectRepository _project;
         private readonly IUnitOfWork _unitofwork;
-        private readonly IMapper _mapper;
+        public readonly IMapper _mapper;
 
         public ProjectsV2Controller(IUnitOfWork unit, IProjectRepository project, IMapper mapper)
         {

@@ -11,9 +11,9 @@ namespace LubyTechAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
-        public string CPF { get; set; }
-        [Required]
+        [Required(ErrorMessage = "You must to set a the  CPF field."), MinLength(11, ErrorMessage = "Minimum 11 characters by CPF")]
+        public long CPF { get; set; }
+        [Required(ErrorMessage = "You must to set a Name for Developer."), MinLength(3, ErrorMessage = "Minimum 3 characters by Name")]
         public string Name { get; set; }
 
         public DateTime Created { get; set; }

@@ -10,7 +10,7 @@ namespace LubyTechAPI.Repository.IRepository
     public interface IDeveloperRepository : IRepository<Developer>
     {
         Task<ICollection<HourByDeveloper>> GetRankinfOfDevelopers();
-        Task<ICollection<Developer>> DeveloperCPFExists(long cpf);
+        Task<bool> CPFExists(long cpf);
         Task<bool> AddHourToProject(Hour Hour);
 
         string GetToken();

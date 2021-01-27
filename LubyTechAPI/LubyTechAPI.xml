@@ -4,7 +4,7 @@
         <name>LubyTechAPI</name>
     </assembly>
     <members>
-        <member name="M:LubyTechAPI.Controllers.DevelopersController.GetDevelopers(System.Int32)">
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.GetDevelopers">
             <summary>
             Get List of Developers
             </summary>

@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
 using LubyTechAPI.Models.DTOs;
-using X.PagedList;
 using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
 namespace LubyTechAPI.Controllers
 {

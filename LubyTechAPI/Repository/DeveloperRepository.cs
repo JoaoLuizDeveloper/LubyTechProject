@@ -3,7 +3,6 @@ using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
 using LubyTechAPI.ViewModel;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace LubyTechAPI.Repository
 {
@@ -30,29 +28,34 @@ namespace LubyTechAPI.Repository
         public async Task<bool> AddHourToProject(Hour hour)
         {
             await _db.Hours.AddAsync(hour);
-            return true;
+            return await _db.SaveChangesAsync() >= 0;
         }
 
         public async Task<ICollection<HourByDeveloper>> GetRankinfOfDevelopers()
         {
             var Contagem = new List<HourByDeveloper>();
-            var developers = await _db.Developers.Include(d=> d.Hours).ToListAsync();
+            var devSevenDays = await _db.Developers.Include(d=> d.Hours).Where(x=> x.Hours.Where(h => h.Created > DateTime.Now.AddDays(-7)).Any()).ToListAsync();
 
-            foreach(var dev in developers)
+            Parallel.ForEach(devSevenDays, (dev) =>
             {
-                if(dev.Hours != null && dev.Hours.Count > 0)
+                try
                 {
-                    double GetWholeTime = 0;
-                    var hoursDev = dev.Hours.Where(x => x.Created > DateTime.Now.AddDays(-7)).Select(x => x.Time);                   
-
-                    foreach(var h in hoursDev)
+                    if (dev.Hours != null && dev.Hours.Count > 0)
                     {
-                        GetWholeTime += h;
-                    }
+                        double GetWholeTime = 0;
+                        var hoursDev = dev.Hours.Select(x => x.Time);
 
-                    Contagem.Add(new HourByDeveloper { IdDev = dev.Id, NameDev = dev.Name,  AllTime = GetWholeTime });
+                        Parallel.ForEach(hoursDev, (h) =>
+                        {
+                            GetWholeTime += h;
+                        });
+
+                        Contagem.Add(new HourByDeveloper { IdDev = dev.Id, NameDev = dev.Name, AllTime = GetWholeTime });
+                    }
                 }
-            }
+                catch (Exception)
+                { }
+            });
 
             var retorno = Contagem.OrderByDescending(o => o.AllTime).Take(5).ToList();
             return retorno;
@@ -76,7 +79,7 @@ namespace LubyTechAPI.Repository
         {
             // User found and generate Jwt Token
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(new Random().Next().ToString());
+            var key = Encoding.ASCII.GetBytes("THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY THING");
             var tokenDescription = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[] {

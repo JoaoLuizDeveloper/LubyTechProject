@@ -5,13 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
-using System.Text;
 using LubyTechAPI.Repository.IRepository;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using AutoMapper;
-using Microsoft.Extensions.Options;
 
 namespace LubyTechAPI.Repository
 {
@@ -45,10 +39,10 @@ namespace LubyTechAPI.Repository
 
             if (includeProperties != null)
             {
-                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                Parallel.ForEach(includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries), (includeProperty) =>
                 {
                     query = query.Include(includeProperty);
-                }
+                });
             }
 
             return await query.FirstOrDefaultAsync();
@@ -67,10 +61,10 @@ namespace LubyTechAPI.Repository
 
             if (includeProperties != null)
             {
-                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                Parallel.ForEach(includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries), (includeProperty) =>
                 {
                     query = query.Include(includeProperty);
-                }
+                });
             }
 
             if (orderBy != null)

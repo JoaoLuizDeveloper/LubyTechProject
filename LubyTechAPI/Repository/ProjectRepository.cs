@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using LubyTechAPI.Data;
+﻿using LubyTechAPI.Data;
 using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LubyTechAPI.Repository
@@ -23,7 +19,7 @@ namespace LubyTechAPI.Repository
         public async Task<bool> AddDeveloperToProject(int developerId, int projectId)
         {
             await _db.Developers_Projects.AddAsync(new Developers_Projects() { DeveloperId = developerId, ProjectId = projectId });
-            return true;
+            return await _db.SaveChangesAsync() >= 0;
         }
     }
 }

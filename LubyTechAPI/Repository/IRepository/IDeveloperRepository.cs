@@ -1,8 +1,6 @@
 ﻿using LubyTechAPI.Models;
 using LubyTechAPI.ViewModel;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace LubyTechAPI.Repository.IRepository

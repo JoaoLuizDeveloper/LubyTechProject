@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using LubyTechAPI.Models;
@@ -9,6 +8,8 @@ using LubyTechAPI.Repository.IRepository;
 using LubyTechAPI.Models.DTOs;
 using LubyTechAPI.ViewModel;
 using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LubyTechAPI.Controllers
 {
@@ -38,6 +39,8 @@ namespace LubyTechAPI.Controllers
         /// <returns></returns>
         [HttpGet(Name = "GetRankingOfDevelopers")]
         [ProducesResponseType(200, Type= typeof(List<HourByDeveloper>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ICollection<HourByDeveloper>> GetRankingOfDevelopers()
         {
             return await _dev.GetRankinfOfDevelopers();
@@ -54,9 +57,9 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
         [HttpGet("GetToken")]
-        public IActionResult GetToken()
+        public string GetToken()
         {
-            return Ok(_dev.GetToken());
+            return _dev.GetToken();
         }
         #endregion
 
@@ -74,7 +77,7 @@ namespace LubyTechAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> AddHourToProject([FromBody] HourDto hour)
         {
-            var objDev = await _unitofwork.Developer.Get(hour.DeveloperId);
+            var objDev = await _unitofwork.Developer.GetFirstOrDefault(x => x.Id == hour.DeveloperId, includeProperties: "DevProjects");
             if (objDev == null)
             {
                 return NotFound();
@@ -95,7 +98,7 @@ namespace LubyTechAPI.Controllers
             var HourObj = _mapper.Map<Hour>(hour);
 
             //Getting the Time in Hours
-            HourObj.Time = (HourObj.DateEnd.Subtract(HourObj.DateBegin)).TotalHours;
+            HourObj.Time = Math.Round((HourObj.DateEnd.Subtract(HourObj.DateBegin)).TotalHours, 5);
 
             if (!(await _dev.AddHourToProject(HourObj)))
             {

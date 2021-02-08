@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LubyTechAPI", "LubyTechAPI\LubyTechAPI.csproj", "{18B131AC-B9D6-4313-8F66-2C1F6B0CE22A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LubyTechAngular", "LubyTechAngular\LubyTechAngular.csproj", "{16C53A09-4B3F-42D5-AFC8-E182E1880D25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LubyTechAngular", "LubyTechAngular\LubyTechAngular.csproj", "{16C53A09-4B3F-42D5-AFC8-E182E1880D25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LubyTechTests", "LubyTechTests\LubyTechTests.csproj", "{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LubyTechTests", "LubyTechTests\LubyTechTests.csproj", "{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LubyTechReact", "LubyTechReact\LubyTechReact.csproj", "{D28F0950-5653-41FC-8573-30AE53804474}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28F0950-5653-41FC-8573-30AE53804474}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28F0950-5653-41FC-8573-30AE53804474}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28F0950-5653-41FC-8573-30AE53804474}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28F0950-5653-41FC-8573-30AE53804474}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

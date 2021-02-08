@@ -6,7 +6,7 @@ import { IProject } from '../../Models/project.interface';
 
 @Component({
   selector: 'app-developer-component',
-  templateUrl: './developer.component.html',
+  templateUrl: './getToken.component.html',
   providers: [DeveloperService, ProjectService],
 })
 export class DeveloperComponent implements OnInit  {
@@ -21,9 +21,7 @@ export class DeveloperComponent implements OnInit  {
 
   constructor(private developerService: DeveloperService, private productService: ProjectService) { }
 
-  ngOnInit() {
-    this.getDevelopers();
-    this.getProducts();   
+  ngOnInit() {  
   }
 
   //Call the service to get all the developers
@@ -42,6 +40,16 @@ export class DeveloperComponent implements OnInit  {
       error => alert(error),
       () => console.log(this.products)
     );
+  }
+
+  private getToken() {
+    this.productService.getProjects().subscribe(
+      data => this.products = data,
+      error => alert(error),
+      () => console.log(this.products)
+    );
+
+    //document.getElementById("token").innerHTML('data');
   }
 
   //Delete the Product

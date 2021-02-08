@@ -8,6 +8,7 @@ namespace LubyTechAPI.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
+        // One interface is an abstract entity to reflect the real class functions
         Task<T> Get(int id);
 
         Task<IEnumerable<T>> GetAll(

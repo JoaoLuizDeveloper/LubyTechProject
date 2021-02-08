@@ -1,7 +1,7 @@
 <header>
-  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-success mb-3">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">LubyTechAngular</a>
+      <a  class="navbar-brand text-white-50" asp-area="" [routerLink]="['/']"><img src="https://www.softplan.com.br/wp-content/themes/softplan-2019/imagens/logo_versao_positiva.svg" style="width:50%" /></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,16 +18,19 @@
             class="nav-item"
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-white" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/developer']">Developer</a>
+            <a class="nav-link text-white" [routerLink]="['/developer']">Developer</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/project']">Project</a>
+            <a class="nav-link text-white" [routerLink]="['/project']">Project</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/ranking']">Ranking</a>
+            <a class="nav-link text-white" [routerLink]="['/ranking']">Ranking</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-white" [routerLink]="['/getToken']">Get Auth Token</a>
           </li>
         </ul>
       </div>

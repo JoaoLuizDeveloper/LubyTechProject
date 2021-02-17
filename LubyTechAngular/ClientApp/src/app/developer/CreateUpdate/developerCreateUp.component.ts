@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './developerCreateUp.component.html',
   providers: [DeveloperService]
 })
-
 export class DeveloperCreateUpComponent implements OnInit  {
     // Developer
     developer: IDeveloper = <IDeveloper>{};

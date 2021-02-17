@@ -35,6 +35,7 @@ export class ProjectCreateUpComponent implements OnInit {
         this.projectService.getProjectById(parametros['id']).subscribe(response => {
           this.edit(response);
         });
+
       }
     });
   }

@@ -4,25 +4,37 @@ import { IProject } from '../Models/project.interface';
 import { map, catchError, retry } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
+import { error } from '@angular/compiler/src/util';
 
 @Injectable()
 
 export class ProjectService {
+  project: IProject = <IProject>{};
   url = 'https://localhost:44387/api/v1/projects/';
   url2 = 'https://localhost:44387/api/v2/projects/';
-  //token = this.http.get<string>('https://localhost:44387/api/v2/developers/GetToken');
-
+  token = "";
   // injetando o HttpClient
   constructor(private http: HttpClient) {
+    
   }
-  // Headers
+
+  //Header
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + this.token })
+  }
+
+  //Getting Token
+  async getToken(){
+    await fetch("https://localhost:44387/api/v2/developers/GetToken", { method: 'get' }).then(response => 
+      response.text().then(function (text) {
+        this.token = text;
+      })
+    );
   }
 
   // Get all the projects
   getProjects(): Observable<IProject[]> {
-    var retorno = this.http.get<IProject[]>(this.url, this.httpOptions )
+    var retorno = this.http.get<IProject[]>(this.url)
       .pipe(
         retry(1),
         catchError(this.handleError));
@@ -30,7 +42,9 @@ export class ProjectService {
   }
 
   // Get one Project By Id
-  getProjectById(id: Int32Array): Observable<IProject> {
+  getProjectById(id: Int32Array): Observable<IProject>{
+    this.getToken();
+    
     return this.http.get<IProject>(this.url + id, this.httpOptions)
       .pipe(
         retry(2),
@@ -39,7 +53,7 @@ export class ProjectService {
     
   // Create one Project
   saveProject(project: IProject): Observable<IProject> { 
-    return this.http.post<IProject>(this.url, JSON.stringify(project), this.httpOptions)
+    return this.http.post<IProject>(this.url, JSON.stringify(project))
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -48,7 +62,7 @@ export class ProjectService {
 
   // Adding Dev To Project
   addDevToProject(developerId: Int32Array, projectId: Int32Array) {
-    var resposta = this.http.get(this.url2 + developerId + projectId, this.httpOptions)
+    var resposta = this.http.get(this.url2 + developerId + projectId)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -58,7 +72,7 @@ export class ProjectService {
 
   // Update one Project
   updateProject(project: IProject): Observable<IProject> {
-    return this.http.patch<IProject>(this.url, JSON.stringify(project), this.httpOptions)
+    return this.http.patch<IProject>(this.url, JSON.stringify(project))
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -67,7 +81,7 @@ export class ProjectService {
 
   // delete one Project
   deleteProject(projectId: Int32Array) {
-    return this.http.delete<IProject>(this.url + projectId, this.httpOptions)
+    return this.http.delete<IProject>(this.url + projectId)
       .pipe(
         retry(1),
         catchError(this.handleError)

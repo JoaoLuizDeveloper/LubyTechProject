@@ -36,8 +36,17 @@ export class DeveloperService {
         catchError(this.handleError));
   }
 
+  //Verify if CPF Exist
   getsearchCpf(cpf: number) {
     return this.http.get<IDeveloper[]>(this.url + 'SearchCpf/' + cpf, this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError));
+  }
+
+  // Get Token worth
+  getToken() {
+    return this.http.get<string>(this.url2 + 'GetToken', this.httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError));

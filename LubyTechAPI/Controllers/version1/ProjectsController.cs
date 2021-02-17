@@ -6,6 +6,7 @@ using LubyTechAPI.Models;
 using LubyTechAPI.Models.DTOs;
 using LubyTechAPI.Repository.IRepository;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LubyTechAPI.Controllers
 {
@@ -47,6 +48,7 @@ namespace LubyTechAPI.Controllers
         /// <param name="id">The id of the Project</param>
         /// <returns></returns>
         [HttpGet("{id:int}", Name = "GetProject")]
+        [Authorize]
         [ProducesResponseType(200, Type = typeof(Project))]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]

@@ -42,8 +42,8 @@ namespace LubyTechAPI
             services.AddAutoMapper(typeof(LubyTechMappings));
             services.AddApiVersioning(options =>
             {
-                options.ApiVersionReader = new HeaderApiVersionReader("x-api-version");
-                options.ReportApiVersions = true;
+                //options.ApiVersionReader = new HeaderApiVersionReader("x-api-version");
+                //options.ReportApiVersions = true;
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.DefaultApiVersion = new ApiVersion(1, 0);
             });

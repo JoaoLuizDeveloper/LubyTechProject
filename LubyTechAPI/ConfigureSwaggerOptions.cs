@@ -25,7 +25,7 @@ namespace LubyTechAPI
                 options.SwaggerDoc(
                     desc.GroupName, new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
-                        Title = $"Navita Api {desc.ApiVersion}",
+                        Title = $"Luby Tech {desc.ApiVersion}",
                         Version = desc.ApiVersion.ToString(),
                     });
             }

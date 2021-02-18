@@ -52,6 +52,14 @@ export class DeveloperService {
         catchError(this.handleError));
   }
 
+  async getingToken(req, res) {
+    const teste = await fetch("https://localhost:44387/api/v2/developers/GetToken");
+    const haha = await teste.json();
+    res.json({
+      haha
+    })
+}
+
   // Get all the projects 
   getProjects(): Observable<IProject[]> {
     return this.http.get<IProject[]>(this.url, this.httpOptions)

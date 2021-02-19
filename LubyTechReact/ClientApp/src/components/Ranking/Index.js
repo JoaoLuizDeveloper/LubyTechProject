@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class Ranking extends Component {
-  static displayName = FetchData.name;
+  //static displayName = FetchData.name;
 
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ export class Ranking extends Component {
     this.populateWeatherData();
   }
 
-  static renderForecastsTable(forecasts) {
+  static render(forecasts) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
@@ -35,25 +35,5 @@ export class Ranking extends Component {
         </tbody>
       </table>
     );
-  }
-
-  render() {
-    let contents = this.state.loading
-      ? <p><em>Loading...</em></p>
-      : FetchData.renderForecastsTable(this.state.forecasts);
-
-    return (
-      <div>
-        <h1 id="tabelLabel" >Weather forecast</h1>
-        <p>This component demonstrates fetching data from the server.</p>
-        {contents}
-      </div>
-    );
-  }
-
-  async populateWeatherData() {
-    const response = await fetch('weatherforecast');
-    const data = await response.json();
-    this.setState({ forecasts: data, loading: false });
   }
 }

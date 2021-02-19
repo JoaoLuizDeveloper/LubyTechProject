@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class Project extends Component {
-  static displayName = Counter.name;
+  //static displayName = Counter.name;
 
   constructor(props) {
     super(props);
@@ -22,9 +22,9 @@ export class Project extends Component {
 
         <p>This is a simple example of a React component.</p>
 
-        <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
+        <p aria-live="polite">Current count: <strong></strong></p>
 
-        <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
+        <button className="btn btn-primary" >Increment</button>
       </div>
     );
   }

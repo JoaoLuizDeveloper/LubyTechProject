@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 export class Developer extends Component {
-  static displayName = FetchData.name;
+  //static displayName = FetchData.name;
 
   constructor(props) {
     super(props);
@@ -9,7 +9,7 @@ export class Developer extends Component {
   }
 
     componentDidMount() {
-        await fetch('https://localhost:44387/api/v1/developers' ,{
+        fetch('https://localhost:44387/api/v1/developers' ,{
             method: 'Get',
             headers: {
                 'Content/Type': 'application/json',

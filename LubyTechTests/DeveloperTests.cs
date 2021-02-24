@@ -1,10 +1,8 @@
 using AutoMapper;
 using LubyTechAPI.Controllers;
 using LubyTechAPI.Controllers.Version2;
-using LubyTechAPI.Models;
 using LubyTechAPI.Repository;
 using LubyTechAPI.Repository.IRepository;
-using LubyTechAPI.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;

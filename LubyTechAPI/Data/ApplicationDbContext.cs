@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using LubyTechAPI.Models;
+﻿using LubyTechModel.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LubyTechAPI.Data
 {

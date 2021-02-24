@@ -2,10 +2,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
-using LubyTechAPI.Models.DTOs;
 using System.Threading.Tasks;
+using LubyTechModel.Models;
+using LubyTechModel.Models.DTOs;
 
 namespace LubyTechAPI.Controllers
 {

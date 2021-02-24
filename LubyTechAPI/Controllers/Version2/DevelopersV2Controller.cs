@@ -3,13 +3,13 @@ using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
-using LubyTechAPI.Models.DTOs;
-using LubyTechAPI.ViewModel;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using LubyTechModel.ViewModel;
+using LubyTechModel.Models;
+using LubyTechModel.Models.DTOs;
 
 namespace LubyTechAPI.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using LubyTechAPI.Models;
-using LubyTechAPI.ViewModel;
+﻿using LubyTechModel.Models;
+using LubyTechModel.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

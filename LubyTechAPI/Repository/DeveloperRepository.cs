@@ -1,7 +1,7 @@
 ﻿using LubyTechAPI.Data;
-using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
-using LubyTechAPI.ViewModel;
+using LubyTechModel.Models;
+using LubyTechModel.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;

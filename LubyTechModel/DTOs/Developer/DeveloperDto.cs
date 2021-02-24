@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace LubyTechAPI.Models.DTOs
+namespace LubyTechModel.Models.DTOs
 {
-    public class DeveloperUpdateDto
+    public class DeveloperDto
     {
         [Key]
         public int Id { get; set; }

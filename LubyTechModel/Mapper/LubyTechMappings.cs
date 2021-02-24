@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using LubyTechAPI.Models;
-using LubyTechAPI.Models.DTOs;
+using LubyTechModel.Models;
+using LubyTechModel.Models.DTOs;
 
-namespace LubyTechAPI.Mapper
+namespace LubyTechModel.Mapper
 {
     public class LubyTechMappings: Profile
     {

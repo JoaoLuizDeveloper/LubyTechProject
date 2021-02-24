@@ -19,7 +19,7 @@ namespace LubyTechAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("LubyTechAPI.Models.Developer", b =>
+            modelBuilder.Entity("LubyTechModel.Models.Developer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace LubyTechAPI.Migrations
                     b.ToTable("Developers");
                 });
 
-            modelBuilder.Entity("LubyTechAPI.Models.Developers_Projects", b =>
+            modelBuilder.Entity("LubyTechModel.Models.Developers_Projects", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -61,7 +61,7 @@ namespace LubyTechAPI.Migrations
                     b.ToTable("Developers_Projects");
                 });
 
-            modelBuilder.Entity("LubyTechAPI.Models.Hour", b =>
+            modelBuilder.Entity("LubyTechModel.Models.Hour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,7 +95,7 @@ namespace LubyTechAPI.Migrations
                     b.ToTable("Hours");
                 });
 
-            modelBuilder.Entity("LubyTechAPI.Models.Project", b =>
+            modelBuilder.Entity("LubyTechModel.Models.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,24 +117,24 @@ namespace LubyTechAPI.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("LubyTechAPI.Models.Developers_Projects", b =>
+            modelBuilder.Entity("LubyTechModel.Models.Developers_Projects", b =>
                 {
-                    b.HasOne("LubyTechAPI.Models.Developer", null)
+                    b.HasOne("LubyTechModel.Models.Developer", null)
                         .WithMany("DevProjects")
                         .HasForeignKey("DeveloperId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LubyTechAPI.Models.Hour", b =>
+            modelBuilder.Entity("LubyTechModel.Models.Hour", b =>
                 {
-                    b.HasOne("LubyTechAPI.Models.Developer", "Developer")
+                    b.HasOne("LubyTechModel.Models.Developer", "Developer")
                         .WithMany("Hours")
                         .HasForeignKey("DeveloperId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LubyTechAPI.Models.Project", "Project")
+                    b.HasOne("LubyTechModel.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)

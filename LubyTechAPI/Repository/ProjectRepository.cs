@@ -1,6 +1,6 @@
 ﻿using LubyTechAPI.Data;
-using LubyTechAPI.Models;
 using LubyTechAPI.Repository.IRepository;
+using LubyTechModel.Models;
 using System.Threading.Tasks;
 
 namespace LubyTechAPI.Repository

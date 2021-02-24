@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LubyTechAPI\LubyTechAPI.csproj" />
+    <ProjectReference Include="..\LubyTechModel\LubyTechModel.csproj" />
   </ItemGroup>
 
 </Project>

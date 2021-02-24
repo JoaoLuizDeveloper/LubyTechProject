@@ -1,4 +1,4 @@
-﻿namespace LubyTechAPI.Models.DTOs
+﻿namespace LubyTechModel.Models.DTOs
 {
     public class Developers_ProjectsDto
     {

@@ -1,4 +1,4 @@
-﻿using LubyTechAPI.Models;
+﻿using LubyTechModel.Models;
 using System.Threading.Tasks;
 
 namespace LubyTechAPI.Repository.IRepository

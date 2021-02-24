@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LubyTechAPI.Models.DTOs
+namespace LubyTechModel.Models.DTOs
 {
     public class HourDto
     {

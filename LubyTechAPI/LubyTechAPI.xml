@@ -17,14 +17,14 @@
             <param name="id">The id of the Developer</param>
             <returns></returns>
         </member>
-        <member name="M:LubyTechAPI.Controllers.DevelopersController.CreateDeveloper(LubyTechAPI.Models.DTOs.DeveloperCreateDto)">
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.CreateDeveloper(LubyTechModel.Models.DTOs.DeveloperCreateDto)">
             <summary>
             CreateDeveloper
             </summary>
             <param name="developers">Create of Developers</param>
             <returns></returns>
         </member>
-        <member name="M:LubyTechAPI.Controllers.DevelopersController.UpdateDeveloper(LubyTechAPI.Models.DTOs.DeveloperUpdateDto)">
+        <member name="M:LubyTechAPI.Controllers.DevelopersController.UpdateDeveloper(LubyTechModel.Models.DTOs.DeveloperUpdateDto)">
             <summary>
             UpdateDeveloper
             </summary>
@@ -58,14 +58,14 @@
             <param name="id">The id of the Project</param>
             <returns></returns>
         </member>
-        <member name="M:LubyTechAPI.Controllers.ProjectsController.CreateProject(LubyTechAPI.Models.DTOs.ProjectCreateDto)">
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.CreateProject(LubyTechModel.Models.DTOs.ProjectCreateDto)">
             <summary>
             Create Project
             </summary>
             <param name="project">Object of the Project</param>
             <returns></returns>
         </member>
-        <member name="M:LubyTechAPI.Controllers.ProjectsController.UpdateProject(LubyTechAPI.Models.DTOs.ProjectUpdateDto)">
+        <member name="M:LubyTechAPI.Controllers.ProjectsController.UpdateProject(LubyTechModel.Models.DTOs.ProjectUpdateDto)">
             <summary>
             Update Project
             </summary>
@@ -91,7 +91,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.AddHourToProject(LubyTechAPI.Models.DTOs.HourDto)">
+        <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.AddHourToProject(LubyTechModel.Models.DTOs.HourDto)">
             <summary>
             Add Hour To Dev by the Project
             </summary>

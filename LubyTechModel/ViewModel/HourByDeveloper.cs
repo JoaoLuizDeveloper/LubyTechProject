@@ -1,4 +1,4 @@
-﻿namespace LubyTechAPI.ViewModel
+﻿namespace LubyTechModel.ViewModel
 {
     public class HourByDeveloper
     {

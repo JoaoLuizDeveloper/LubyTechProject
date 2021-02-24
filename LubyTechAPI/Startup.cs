@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using LubyTechAPI.Mapper;
+using LubyTechModel.Mapper;
 
 namespace LubyTechAPI
 {

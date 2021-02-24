@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace LubyTechAPI.Models.DTOs
+namespace LubyTechModel.Models.DTOs
 {
     public class ProjectCreateDto
     {

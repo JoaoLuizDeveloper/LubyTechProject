@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LubyTechAPI.Migrations
 {
-    public partial class TablesToDB : Migration
+    public partial class addingDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace LubyTechAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CPF = table.Column<string>(nullable: false),
+                    CPF = table.Column<long>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Created = table.Column<DateTime>(nullable: false)
                 },
@@ -63,12 +63,12 @@ namespace LubyTechAPI.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    dateBegin = table.Column<DateTime>(nullable: false),
-                    dateEnd = table.Column<DateTime>(nullable: false),
+                    DateBegin = table.Column<DateTime>(nullable: false),
+                    DateEnd = table.Column<DateTime>(nullable: false),
                     Time = table.Column<double>(nullable: false),
                     DeveloperId = table.Column<int>(nullable: false),
                     ProjectId = table.Column<int>(nullable: false),
-                    created = table.Column<DateTime>(nullable: false)
+                    Created = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {

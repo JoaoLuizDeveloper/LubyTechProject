@@ -15,12 +15,10 @@ export class Developer extends Component {
                 'Content/Type': 'application/json',
                 'Authentication': 'Bearer ' 
             },
-
-            })
-            .then(res => res.json())
+        })  .then(res => res.json())
             .then((data) => {
                 this.setState({ developers: data })
-            })
+        })
             .catch(console.log)
     }
 
@@ -40,7 +38,7 @@ export class Developer extends Component {
                   <td>{dev.Name}</td>
                   <td>{dev.CPF}</td>
                   <td>{dev.Created}</td>
-            </tr>
+              </tr>
           )}
         </tbody>
       </table>

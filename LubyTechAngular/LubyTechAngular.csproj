@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Models\hourByDeveloper.interface.ts" />
+    <None Remove="ClientApp\src\app\Services\auth.service.js.map" />
     <None Remove="ClientApp\src\app\Services\auth.service.ts" />
   </ItemGroup>
 
@@ -34,7 +35,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\Models\hourByDeveloper.interface.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\Services\auth.service.ts" />
   </ItemGroup>
 
   <ItemGroup>

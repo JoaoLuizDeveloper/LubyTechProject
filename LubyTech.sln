@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LubyTechAngular", "LubyTech
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LubyTechTests", "LubyTechTests\LubyTechTests.csproj", "{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LubyTechReact", "LubyTechReact\LubyTechReact.csproj", "{D28F0950-5653-41FC-8573-30AE53804474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LubyTechReact", "LubyTechReact\LubyTechReact.csproj", "{D28F0950-5653-41FC-8573-30AE53804474}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-API", "01-API", "{18138636-AF39-49B2-8742-EE29E010CDA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Front", "02-Front", "{9A47D165-B522-4C95-A2DA-2D938F78C482}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Tests", "03-Tests", "{396E3446-0842-4E3C-B904-2301AF9F1183}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +42,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18B131AC-B9D6-4313-8F66-2C1F6B0CE22A} = {18138636-AF39-49B2-8742-EE29E010CDA9}
+		{16C53A09-4B3F-42D5-AFC8-E182E1880D25} = {9A47D165-B522-4C95-A2DA-2D938F78C482}
+		{6D930912-FE4B-44EF-91BA-4FFBA9BBEE79} = {396E3446-0842-4E3C-B904-2301AF9F1183}
+		{D28F0950-5653-41FC-8573-30AE53804474} = {9A47D165-B522-4C95-A2DA-2D938F78C482}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D7AA328C-7FF0-4909-9782-A658966E5C15}

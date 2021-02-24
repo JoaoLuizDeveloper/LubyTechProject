@@ -17,7 +17,7 @@ import { ProjectCreateUpComponent } from './project/CreateUpdate/projectCreateUp
  
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule } from '@angular/common';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
+//import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
@@ -40,7 +40,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     CommonModule,
     NgxPaginationModule,
     AngularFontAwesomeModule,
-    NgxMaskModule.forRoot(),
+    //NgxMaskModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([

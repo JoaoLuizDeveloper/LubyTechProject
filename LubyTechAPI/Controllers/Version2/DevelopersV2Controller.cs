@@ -65,11 +65,11 @@ namespace LubyTechAPI.Controllers
 
         #region Add Hour To Project
         /// <summary>
-        /// Add Hour To Project
+        /// Add Hour To Dev by the Project
         /// </summary>
         /// <param name="hour">Hour Object with Developer and Project Id</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost(Name = "AddHourToDevByProj")]
         [Authorize]
         [ProducesResponseType(201, Type = typeof(Hour))]
         [ProducesResponseType(StatusCodes.Status201Created)]

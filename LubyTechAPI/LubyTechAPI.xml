@@ -93,7 +93,7 @@
         </member>
         <member name="M:LubyTechAPI.Controllers.DevelopersV2Controller.AddHourToProject(LubyTechAPI.Models.DTOs.HourDto)">
             <summary>
-            Add Hour To Project
+            Add Hour To Dev by the Project
             </summary>
             <param name="hour">Hour Object with Developer and Project Id</param>
             <returns></returns>

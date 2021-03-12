@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 
-export class Developer extends Component {
-  //static displayName = FetchData.name;
-
+export class Developer extends React.Component {
+  
   constructor(props) {
     super(props);
-    this.state = { developers: [], loading: true };
+      this.state = { developers: [], loading: true, token:'' };
   }
 
-    componentDidMount() {
-        fetch('https://localhost:44387/api/v1/developers' ,{
+    async componentDidMount() {
+        //var t = await fetch('https://localhost:44387/api/v2/GetToken', {
+        //    method: 'GET',
+        //}).then(res => res.json())
+        //    .then((data) => { this.setState({ token: data }) })
+        //    .catch(console.log)
+
+        await fetch('https://localhost:44387/api/v1/developers', {
             method: 'Get',
             headers: {
                 'Content/Type': 'application/json',
-                'Authentication': 'Bearer ' 
+                //'Authentication': 'Bearer ' + this.token
             },
         })  .then(res => res.json())
             .then((data) => {
@@ -22,7 +27,7 @@ export class Developer extends Component {
             .catch(console.log)
     }
 
-    static render(developers) {
+    render(developers) {
     return (
       <table className='table table-striped' aria-labelledby="tabelLabel">
         <thead>
@@ -32,16 +37,16 @@ export class Developer extends Component {
             <th>Created</th>
           </tr>
         </thead>
-        <tbody>
-          {developers.map(dev =>
-              <tr key={dev.Id}>
-                  <td>{dev.Name}</td>
-                  <td>{dev.CPF}</td>
-                  <td>{dev.Created}</td>
-              </tr>
-          )}
-        </tbody>
-      </table>
+            <tbody>
+                {this.state.developers.map(dev =>
+                    <tr key={dev.id}>
+                        <td>{dev.name}</td>
+                        <td>{dev.cpf}</td>
+                        <td>{dev.created}</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
     );
   }
 }

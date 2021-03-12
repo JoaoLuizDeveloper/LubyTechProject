@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Logo } from '../../image/home.png';
 import './NavMenu.css';
 const style = {
     color: 'white',
@@ -34,7 +33,7 @@ export class NavMenu extends Component {
             <Navbar className="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-success mb-3" light>
                 <Container>
                     <NavbarBrand tag={Link} to="/">
-                        <a href="#"><img src={"../../image/home.png"} style={style} /></a>
+                        <a href="/"><img src={"../../image/home.png"} style={style} /></a>
                     </NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>

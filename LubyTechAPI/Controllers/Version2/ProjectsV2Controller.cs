@@ -34,7 +34,7 @@ namespace LubyTechAPI.Controllers.Version2
         /// <param name="developerId">Id of the Developer</param>
         /// <param name="projectId">Id of the Project</param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet(Name = "AddDevToProj")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
@@ -50,7 +50,6 @@ namespace LubyTechAPI.Controllers.Version2
             {
                 return NotFound();
             }
-
 
             if (! (await _project.AddDeveloperToProject(developerId, projectId)))
             {

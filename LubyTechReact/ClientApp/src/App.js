@@ -4,7 +4,6 @@ import { Route } from 'react-router';
 //Components Pages
 import { Layout } from './components/_Layout/Layout';
 import { Home } from './components/Home/Index';
-import { GetToken } from './components/GetToken/Index';
 import { Project } from './components/Project/Index';
 import { Ranking } from './components/Ranking/Index';
 import { Developer } from './components/Developer/Index';
@@ -18,10 +17,9 @@ export default class App extends Component {
     return (
       <Layout>
         <Route exact path='/' component={Home} />
-            <Route path='/project' component={Project} />
+        <Route path='/project' component={Project} />
         <Route path='/developer' component={Developer} />
-            <Route path='/ranking' component={Ranking} />
-            <Route path='/getToken' component={GetToken} />
+        <Route path='/ranking' component={Ranking} />
       </Layout>
     );
   }

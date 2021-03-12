@@ -12,11 +12,11 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using LubyTechModel.Mapper;
+using LubyTechAPI.Extensions;
 
 namespace LubyTechAPI
 {
@@ -34,10 +34,9 @@ namespace LubyTechAPI
             services.AddCors();
             services.AddDbContext<ApplicationDbContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IDeveloperRepository, DeveloperRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<IProjectRepository, ProjectRepository>();
-            
+
+            services.AddInfrastructure();
+
             services.AddControllers();
             services.AddAutoMapper(typeof(LubyTechMappings));
             services.AddApiVersioning(options =>
